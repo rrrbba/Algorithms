@@ -5,8 +5,20 @@ import sys
 # The cache parameter is here for if you want to implement
 # a solution that is more efficient than the naive 
 # recursive solution
-def eating_cookies(n, cache=None):
-  pass
+#rtc = O(n)
+def eating_cookies(n, cache={0:0, 1:1, 2:2, 3:4}): #input: fib number
+  if n < 0: 
+    return 0
+  if n == 0:
+    return 1
+  elif cache and n in cache:
+    return cache[n]
+  else:
+    cache[n] = eating_cookies(n-1, cache) + eating_cookies(n-2, cache) + eating_cookies(n-3, cache)
+ 
+  return cache[n]
+
+# print(eating_cookies(35))
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
